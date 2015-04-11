@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        splitViewController.delegate = self
+//        let splitViewController = self.window!.rootViewController as! UISplitViewController
+//        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+//        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+//        splitViewController.delegate = self
+        let viewController = self.window!.rootViewController as! LoginViewController
+        viewController.delegate = self
         return true
     }
 
@@ -45,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    // MARK: - Split view
+
+    // MARK: split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
         if let secondaryAsNavController = secondaryViewController as? UINavigationController {
