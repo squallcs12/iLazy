@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97AE75A71AD8D2BA006BFE07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */; };
+		97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */; };
+		97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */; };
+		97AE75AE1AD8D2BA006BFE07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97AE75AC1AD8D2BA006BFE07 /* Main.storyboard */; };
+		97AE75B01AD8D2BA006BFE07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97AE75AF1AD8D2BA006BFE07 /* Images.xcassets */; };
+		97AE75B31AD8D2BA006BFE07 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97AE75B11AD8D2BA006BFE07 /* LaunchScreen.xib */; };
+		97AE75BF1AD8D2BA006BFE07 /* iLazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75BE1AD8D2BA006BFE07 /* iLazyTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		97AE75B91AD8D2BA006BFE07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97AE75991AD8D2BA006BFE07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97AE75A01AD8D2BA006BFE07;
+			remoteInfo = iLazy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		97AE75A11AD8D2BA006BFE07 /* iLazy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLazy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AE75A51AD8D2BA006BFE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		97AE75AD1AD8D2BA006BFE07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97AE75AF1AD8D2BA006BFE07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		97AE75B21AD8D2BA006BFE07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		97AE75B81AD8D2BA006BFE07 /* iLazyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iLazyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AE75BD1AD8D2BA006BFE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97AE75BE1AD8D2BA006BFE07 /* iLazyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iLazyTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97AE759E1AD8D2BA006BFE07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AE75B51AD8D2BA006BFE07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97AE75981AD8D2BA006BFE07 = {
+			isa = PBXGroup;
+			children = (
+				97AE75A31AD8D2BA006BFE07 /* iLazy */,
+				97AE75BB1AD8D2BA006BFE07 /* iLazyTests */,
+				97AE75A21AD8D2BA006BFE07 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97AE75A21AD8D2BA006BFE07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97AE75A11AD8D2BA006BFE07 /* iLazy.app */,
+				97AE75B81AD8D2BA006BFE07 /* iLazyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97AE75A31AD8D2BA006BFE07 /* iLazy */ = {
+			isa = PBXGroup;
+			children = (
+				97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */,
+				97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */,
+				97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */,
+				97AE75AC1AD8D2BA006BFE07 /* Main.storyboard */,
+				97AE75AF1AD8D2BA006BFE07 /* Images.xcassets */,
+				97AE75B11AD8D2BA006BFE07 /* LaunchScreen.xib */,
+				97AE75A41AD8D2BA006BFE07 /* Supporting Files */,
+			);
+			path = iLazy;
+			sourceTree = "<group>";
+		};
+		97AE75A41AD8D2BA006BFE07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				97AE75A51AD8D2BA006BFE07 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		97AE75BB1AD8D2BA006BFE07 /* iLazyTests */ = {
+			isa = PBXGroup;
+			children = (
+				97AE75BE1AD8D2BA006BFE07 /* iLazyTests.swift */,
+				97AE75BC1AD8D2BA006BFE07 /* Supporting Files */,
+			);
+			path = iLazyTests;
+			sourceTree = "<group>";
+		};
+		97AE75BC1AD8D2BA006BFE07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				97AE75BD1AD8D2BA006BFE07 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97AE75A01AD8D2BA006BFE07 /* iLazy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97AE75C21AD8D2BA006BFE07 /* Build configuration list for PBXNativeTarget "iLazy" */;
+			buildPhases = (
+				97AE759D1AD8D2BA006BFE07 /* Sources */,
+				97AE759E1AD8D2BA006BFE07 /* Frameworks */,
+				97AE759F1AD8D2BA006BFE07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iLazy;
+			productName = iLazy;
+			productReference = 97AE75A11AD8D2BA006BFE07 /* iLazy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		97AE75B71AD8D2BA006BFE07 /* iLazyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97AE75C51AD8D2BA006BFE07 /* Build configuration list for PBXNativeTarget "iLazyTests" */;
+			buildPhases = (
+				97AE75B41AD8D2BA006BFE07 /* Sources */,
+				97AE75B51AD8D2BA006BFE07 /* Frameworks */,
+				97AE75B61AD8D2BA006BFE07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97AE75BA1AD8D2BA006BFE07 /* PBXTargetDependency */,
+			);
+			name = iLazyTests;
+			productName = iLazyTests;
+			productReference = 97AE75B81AD8D2BA006BFE07 /* iLazyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97AE75991AD8D2BA006BFE07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Antipro;
+				TargetAttributes = {
+					97AE75A01AD8D2BA006BFE07 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					97AE75B71AD8D2BA006BFE07 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 97AE75A01AD8D2BA006BFE07;
+					};
+				};
+			};
+			buildConfigurationList = 97AE759C1AD8D2BA006BFE07 /* Build configuration list for PBXProject "iLazy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97AE75981AD8D2BA006BFE07;
+			productRefGroup = 97AE75A21AD8D2BA006BFE07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97AE75A01AD8D2BA006BFE07 /* iLazy */,
+				97AE75B71AD8D2BA006BFE07 /* iLazyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97AE759F1AD8D2BA006BFE07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AE75AE1AD8D2BA006BFE07 /* Main.storyboard in Resources */,
+				97AE75B31AD8D2BA006BFE07 /* LaunchScreen.xib in Resources */,
+				97AE75B01AD8D2BA006BFE07 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AE75B61AD8D2BA006BFE07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97AE759D1AD8D2BA006BFE07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */,
+				97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */,
+				97AE75A71AD8D2BA006BFE07 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AE75B41AD8D2BA006BFE07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AE75BF1AD8D2BA006BFE07 /* iLazyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97AE75BA1AD8D2BA006BFE07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97AE75A01AD8D2BA006BFE07 /* iLazy */;
+			targetProxy = 97AE75B91AD8D2BA006BFE07 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		97AE75AC1AD8D2BA006BFE07 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97AE75AD1AD8D2BA006BFE07 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		97AE75B11AD8D2BA006BFE07 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97AE75B21AD8D2BA006BFE07 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97AE75C01AD8D2BA006BFE07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97AE75C11AD8D2BA006BFE07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97AE75C31AD8D2BA006BFE07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = iLazy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		97AE75C41AD8D2BA006BFE07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = iLazy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		97AE75C61AD8D2BA006BFE07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iLazyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iLazy.app/iLazy";
+			};
+			name = Debug;
+		};
+		97AE75C71AD8D2BA006BFE07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iLazyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iLazy.app/iLazy";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97AE759C1AD8D2BA006BFE07 /* Build configuration list for PBXProject "iLazy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97AE75C01AD8D2BA006BFE07 /* Debug */,
+				97AE75C11AD8D2BA006BFE07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97AE75C21AD8D2BA006BFE07 /* Build configuration list for PBXNativeTarget "iLazy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97AE75C31AD8D2BA006BFE07 /* Debug */,
+				97AE75C41AD8D2BA006BFE07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		97AE75C51AD8D2BA006BFE07 /* Build configuration list for PBXNativeTarget "iLazyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97AE75C61AD8D2BA006BFE07 /* Debug */,
+				97AE75C71AD8D2BA006BFE07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97AE75991AD8D2BA006BFE07 /* Project object */;
+}
