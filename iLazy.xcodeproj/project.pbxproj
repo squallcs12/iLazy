@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		972A5C4B1AD9051500120C2B /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C491AD9051500120C2B /* Locksmith.swift */; };
+		972A5C4C1AD9051500120C2B /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */; };
 		97AE75A71AD8D2BA006BFE07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */; };
 		97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */; };
 		97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		972A5C491AD9051500120C2B /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		97AE75A11AD8D2BA006BFE07 /* iLazy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLazy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AE75A51AD8D2BA006BFE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 		97AE75A31AD8D2BA006BFE07 /* iLazy */ = {
 			isa = PBXGroup;
 			children = (
+				972A5C491AD9051500120C2B /* Locksmith.swift */,
+				972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */,
 				97AE75C81AD8D2FA006BFE07 /* Api.swift */,
 				97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */,
 				97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */,
@@ -221,11 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972A5C4C1AD9051500120C2B /* LocksmithRequest.swift in Sources */,
 				97AE75CB1AD8D309006BFE07 /* LoginViewController.swift in Sources */,
 				97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */,
 				97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */,
 				97AE75C91AD8D2FA006BFE07 /* Api.swift in Sources */,
 				97AE75A71AD8D2BA006BFE07 /* AppDelegate.swift in Sources */,
+				972A5C4B1AD9051500120C2B /* Locksmith.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

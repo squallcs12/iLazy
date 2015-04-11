@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let (data, error) = Locksmith.loadDataForUserAccount("myUserAccount")
         // Do any additional setup after loading the view, typically from a nib.
         self.alert = UIAlertController(title: "Error", message: "Please enter username and password.", preferredStyle: .Alert)
         self.alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
@@ -58,17 +59,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             data, response, error in
             self.loadingAlert.dismissViewControllerAnimated(true){
 
-                if data.objectForKey("success") as! Bool {
-                    self.performSegueWithIdentifier("showSplitViewController", sender: self)
-                } else {
-                    let errors = data.objectForKey("errors") as! NSArray
-                    if let message = errors[0].objectForKey("message") as? String {
-                        self.alert.message = message
-                    } else {
-                        self.alert.message = "Unable to login, please try again later."
-                    }
+                if let error = data.objectForKey("error") as! String!{
+                    self.alert.title = error
+                    self.alert.message = data.objectForKey("error_description") as? String
 
                     self.presentViewController(self.alert, animated: true, completion: nil)
+                } else {
+
+                    let error = Locksmith.saveData(["username": self.usernameTextField.text, "password": self.passwordTextField.text], forUserAccount: "myUserAccount")
+
+                    Client.accessToken = data.objectForKey("access_token") as! String!
+                    Client.refreshToken = data.objectForKey("refresh_token") as! String!
+                    Client.tokenType = data.objectForKey("token_type") as! String!
+                    self.performSegueWithIdentifier("showSplitViewController", sender: self)
                 }
             }
         }

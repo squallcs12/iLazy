@@ -10,19 +10,27 @@ import Foundation
 
 public struct Client{
     static var session = NSURLSession.sharedSession()
-    static var HOST = "http://localhost:8000"
+    static var host = "localhost:8000"
+    static var schema = "http"
     static var isLogin = false
+    static var clientId = "zgYQBHM7AoqtNwRhEuQw6OlbPwtR3geV9EjnLWDf"
+    static var clientSecret = "KVnKb9Oh6397LcuUKwdmLjbyeu3PNRFZH8OvtAR5UJ0ew1XmXNYTty45RnZxHl51I1QmkrxFaw727ACX6KCVkZuplMmlsYWjC0QUr99tyqdtU5czUbqrqWpPzwiC5qwe"
+    static var accessToken = ""
+    static var refreshToken = ""
+    static var tokenType = ""
 }
 
 
 class API{
 
     class func getUrl(url: NSString) -> String{
-        return "\(Client.HOST)\(url)";
+        return "\(Client.schema)://\(Client.host)\(url)";
     }
 
-    class func request(request: NSURLRequest, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
-        
+    class func request(request: NSMutableURLRequest, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        if Client.accessToken != "" {
+            request.setValue("\(Client.tokenType) \(Client.accessToken)", forHTTPHeaderField: "Authorization")
+        }
         var task = Client.session.dataTaskWithRequest(request){
             data, response, error in
             var response = response as! NSHTTPURLResponse
@@ -39,15 +47,21 @@ class API{
 
     class func fetchApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void, errorHandler eHandler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         let url = NSURL(string: self.getUrl("/api/apps/"))
-        let request = NSURLRequest(URL: url!)
+        let request = NSMutableURLRequest(URL: url!)
         self.request(request, completionHandler: handler)
     }
 
     class func login(username: NSString, password: NSString, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
-        let url = NSURL(string: self.getUrl("/api/login/"))
+        let url = NSURL(string: self.getUrl("/o/token/"))
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
-        let data = "username=\(username)&password=\(password)"
+
+        let loginString = NSString(format: "%@:%@", Client.clientId, Client.clientSecret)
+        let loginData = loginString.dataUsingEncoding(NSUTF8StringEncoding) as NSData!
+        let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
+        let data = "grant_type=password&username=\(username)&password=\(password)"
         request.HTTPBody = data.dataUsingEncoding(NSUTF8StringEncoding)
         
         self.request(request, completionHandler: handler)
