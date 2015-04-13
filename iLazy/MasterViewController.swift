@@ -8,19 +8,23 @@
 
 import UIKit
 
-struct App {
+public struct App {
     let name: String;
     let site: String;
     let price: Double;
+
+    static func fromDict(dict: NSDictionary) -> App{
+        return App(
+            name: dict.objectForKey("name") as! String,
+            site: dict.objectForKey("site") as! String,
+            price: dict.objectForKey("price") as! Double)
+    }
 }
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
 
     var detailViewController: DetailViewController? = nil
     var objects = [App]()
-
-    var addButton: UIBarButtonItem? = nil
-    var doneButton: UIBarButtonItem? = nil
 
     var showPrice: Bool = false
 
@@ -40,21 +44,10 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
-
-        self.addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "browseOnlinePackage:")
-        self.doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "browseLocalPackage:")
-        self.setupExistsList()
-    }
-
-    func setupExistsList(){
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        self.navigationItem.rightBarButtonItem = self.addButton
-        self.showPrice = false
+        self.browseOnlinePackage(self)
     }
 
     func setupBrowseList(){
-        self.navigationItem.leftBarButtonItem = self.doneButton
-        self.navigationItem.rightBarButtonItem = nil
         self.showPrice = true
     }
 
@@ -63,22 +56,22 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func browseLocalPackage(sender: AnyObject){
-        self.setupExistsList()
+    func clearTable(){
+        self.objects.removeAll(keepCapacity: false)
+        self.tableView.reloadData()
     }
 
     func browseOnlinePackage(sender: AnyObject) {
         self.setupBrowseList()
+        self.clearTable()
+        Alert.loading(self, message: "Loading...", completion: nil)
         API.fetchApps(){
             data, response, error in
             if data.objectForKey("success") as! Bool {
                 let apps = data.objectForKey("apps") as! NSArray
                 var indexPaths = [NSIndexPath]()
                 for _app in apps {
-                    var app = App(
-                        name: _app.objectForKey("name") as! String,
-                        site: _app.objectForKey("site") as! String,
-                        price: _app.objectForKey("price") as! Double)
+                    var app = App.fromDict(_app as! NSDictionary)
                     var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
                     indexPaths.append(indexPath)
                     self.objects.append(app)
@@ -86,12 +79,11 @@ class MasterViewController: UITableViewController {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
                     self.tableView.reloadData()
-
+                    Alert.hideLoading();
                 })
             } else {
 
             }
-
         }
     }
 
@@ -139,7 +131,5 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
-
 }
 

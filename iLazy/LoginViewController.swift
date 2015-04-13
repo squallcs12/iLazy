@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             Client.accessToken = data?.objectForKey("access_token") as! String!
             Client.refreshToken = data?.objectForKey("refresh_token") as! String!
             Client.tokenType = data?.objectForKey("token_type") as! String!
-            self.performSegueWithIdentifier("showSplitViewController", sender: self)
+            self.performSegueWithIdentifier("afterLoginSegue", sender: self)
             return;
         }
     }
@@ -85,16 +85,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         "refresh_token": Client.refreshToken,
                         "token_type": Client.tokenType
                         ], forUserAccount: "myUserAccount")
-                    self.performSegueWithIdentifier("showSplitViewController", sender: self)
+                    self.performSegueWithIdentifier("afterLoginSegue", sender: self)
                 }
             }
         }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showSplitViewController" {
-            let controller = segue.destinationViewController as! UISplitViewController
-            controller.delegate = self.delegate
+        if segue.identifier == "afterLoginSegue" {
+//            let controller = segue.destinationViewController as! UISplitViewController
+//            controller.delegate = self.delegate
         }
     }
 

@@ -51,6 +51,12 @@ class API{
         self.request(request, completionHandler: handler)
     }
 
+    class func searchApps(keyword: String, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/api/apps/?keyword=\(keyword)"))
+        let request = NSMutableURLRequest(URL: url!)
+        self.request(request, completionHandler: handler)
+    }
+
     class func login(username: NSString, password: NSString, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         let url = NSURL(string: self.getUrl("/o/token/"))
         let request = NSMutableURLRequest(URL: url!)
@@ -66,4 +72,6 @@ class API{
         
         self.request(request, completionHandler: handler)
     }
+
+
 }

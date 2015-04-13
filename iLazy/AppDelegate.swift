@@ -8,6 +8,11 @@
 
 import UIKit
 
+public struct Static{
+    static var delegate: AppDelegate? = nil;
+    static var detailController: DetailViewController? = nil;
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
@@ -20,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 //        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
 //        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
 //        splitViewController.delegate = self
-        let viewController = self.window!.rootViewController as! LoginViewController
-        viewController.delegate = self
+        Static.delegate = self
         return true
     }
 
