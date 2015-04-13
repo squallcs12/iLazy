@@ -18,9 +18,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var delegate: UISplitViewControllerDelegate! = nil
 
+    override func viewDidAppear(animated: Bool) {
+        let (data, error) = Locksmith.loadDataForUserAccount("myUserAccount")
+        if let accessToken = data?.objectForKey("access_token") as! String! {
+            Client.accessToken = data?.objectForKey("access_token") as! String!
+            Client.refreshToken = data?.objectForKey("refresh_token") as! String!
+            Client.tokenType = data?.objectForKey("token_type") as! String!
+            self.performSegueWithIdentifier("showSplitViewController", sender: self)
+            return;
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let (data, error) = Locksmith.loadDataForUserAccount("myUserAccount")
+
         // Do any additional setup after loading the view, typically from a nib.
         self.alert = UIAlertController(title: "Error", message: "Please enter username and password.", preferredStyle: .Alert)
         self.alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
@@ -65,12 +76,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                     self.presentViewController(self.alert, animated: true, completion: nil)
                 } else {
-
-                    let error = Locksmith.saveData(["username": self.usernameTextField.text, "password": self.passwordTextField.text], forUserAccount: "myUserAccount")
-
                     Client.accessToken = data.objectForKey("access_token") as! String!
                     Client.refreshToken = data.objectForKey("refresh_token") as! String!
                     Client.tokenType = data.objectForKey("token_type") as! String!
+                    Locksmith.deleteDataForUserAccount("myUserAccount")
+                    let error = Locksmith.saveData([
+                        "access_token": Client.accessToken,
+                        "refresh_token": Client.refreshToken,
+                        "token_type": Client.tokenType
+                        ], forUserAccount: "myUserAccount")
                     self.performSegueWithIdentifier("showSplitViewController", sender: self)
                 }
             }

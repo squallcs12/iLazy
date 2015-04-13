@@ -45,7 +45,7 @@ class API{
         task.resume()
     }
 
-    class func fetchApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void, errorHandler eHandler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+    class func fetchApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         let url = NSURL(string: self.getUrl("/api/apps/"))
         let request = NSMutableURLRequest(URL: url!)
         self.request(request, completionHandler: handler)

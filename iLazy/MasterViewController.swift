@@ -8,10 +8,21 @@
 
 import UIKit
 
+struct App {
+    let name: String;
+    let site: String;
+    let price: Double;
+}
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+    var objects = [App]()
+
+    var addButton: UIBarButtonItem? = nil
+    var doneButton: UIBarButtonItem? = nil
+
+    var showPrice: Bool = false
 
 
     override func awakeFromNib() {
@@ -25,14 +36,26 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
+
+        self.addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "browseOnlinePackage:")
+        self.doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "browseLocalPackage:")
+        self.setupExistsList()
+    }
+
+    func setupExistsList(){
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.addButton
+        self.showPrice = false
+    }
+
+    func setupBrowseList(){
+        self.navigationItem.leftBarButtonItem = self.doneButton
+        self.navigationItem.rightBarButtonItem = nil
+        self.showPrice = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,10 +63,36 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    func browseLocalPackage(sender: AnyObject){
+        self.setupExistsList()
+    }
+
+    func browseOnlinePackage(sender: AnyObject) {
+        self.setupBrowseList()
+        API.fetchApps(){
+            data, response, error in
+            if data.objectForKey("success") as! Bool {
+                let apps = data.objectForKey("apps") as! NSArray
+                var indexPaths = [NSIndexPath]()
+                for _app in apps {
+                    var app = App(
+                        name: _app.objectForKey("name") as! String,
+                        site: _app.objectForKey("site") as! String,
+                        price: _app.objectForKey("price") as! Double)
+                    var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
+                    indexPaths.append(indexPath)
+                    self.objects.append(app)
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+                    self.tableView.reloadData()
+
+                })
+            } else {
+
+            }
+
+        }
     }
 
     // MARK: - Segues
@@ -51,7 +100,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -71,10 +120,9 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let cell:AppCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AppCell
+        let obj = self.objects[indexPath.row]
+        cell.setApp(obj)
         return cell
     }
 
