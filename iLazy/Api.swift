@@ -39,10 +39,42 @@ class API{
                 Client.isLogin = false
                 println("Show login box")
                 return
+            } else if response.statusCode == 401 {
+                let error = data.objectForKey("error") as! String!
+                if error != nil && error == "invalid_grant" {
+                    Locksmith.deleteDataForUserAccount("myUserAccount")
+                    Alert.hideLoading(){
+                        let loginViewController = Static.delegate!.window!.rootViewController as! LoginViewController
+                        loginViewController.tabBarContrl?.performSegueWithIdentifier("showLoginForm", sender: API())
+                    }
+                    return
+                }
+                Client.accessToken = ""
+                API.refreshToken(){
+                    data, response, error in
+                    API.saveLoginData(data)
+                    API.request(request, completionHandler: handler)
+                }
+                return
             }
             handler(data, response, error)
         }
         task.resume()
+    }
+
+    class func refreshToken(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/o/token/"))
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        let loginString = NSString(format: "%@:%@", Client.clientId, Client.clientSecret)
+        let loginData = loginString.dataUsingEncoding(NSUTF8StringEncoding) as NSData!
+        let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
+        let data = "grant_type=refresh_token&refresh_token=\(Client.refreshToken)"
+        request.HTTPBody = data.dataUsingEncoding(NSUTF8StringEncoding)
+
+        self.request(request, completionHandler: handler)
     }
 
     class func fetchApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
@@ -67,10 +99,30 @@ class API{
         let base64LoginString = loginData.base64EncodedStringWithOptions(nil)
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
 
-        let data = "grant_type=password&username=\(username)&password=\(password)"
-        request.HTTPBody = data.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        self.request(request, completionHandler: handler)
+        let postData = "grant_type=password&username=\(username)&password=\(password)"
+        request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)
+
+        func loginSuccess(data: NSDictionary!, response: NSHTTPURLResponse!, error: NSError!){
+            if let error = data.objectForKey("error") as! String!{
+            } else {
+                API.saveLoginData(data)
+            }
+            handler(data, response, error)
+        }
+
+        self.request(request, completionHandler: loginSuccess)
+    }
+
+    class func saveLoginData(data: NSDictionary){
+        Client.accessToken = data.objectForKey("access_token") as! String!
+        Client.refreshToken = data.objectForKey("refresh_token") as! String!
+        Client.tokenType = data.objectForKey("token_type") as! String!
+        Locksmith.deleteDataForUserAccount("myUserAccount")
+        let error = Locksmith.saveData([
+            "access_token": Client.accessToken,
+            "refresh_token": Client.refreshToken,
+            "token_type": Client.tokenType
+            ], forUserAccount: "myUserAccount")
     }
 
 

@@ -101,13 +101,13 @@
 		97AE75A31AD8D2BA006BFE07 /* iLazy */ = {
 			isa = PBXGroup;
 			children = (
+				972A5C671ADBD92400120C2B /* Main.storyboard */,
 				972A5C491AD9051500120C2B /* Locksmith.swift */,
 				972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */,
 				97AE75C81AD8D2FA006BFE07 /* Api.swift */,
 				97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */,
 				97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */,
 				97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */,
-				972A5C671ADBD92400120C2B /* Main.storyboard */,
 				97AE75CA1AD8D309006BFE07 /* LoginViewController.swift */,
 				97AE75AF1AD8D2BA006BFE07 /* Images.xcassets */,
 				97AE75B11AD8D2BA006BFE07 /* LaunchScreen.xib */,

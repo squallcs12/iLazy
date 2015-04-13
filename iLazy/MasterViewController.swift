@@ -79,7 +79,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
                     self.tableView.reloadData()
-                    Alert.hideLoading();
+                    Alert.hideLoading(nil)
                 })
             } else {
 

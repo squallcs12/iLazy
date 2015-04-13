@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var loadingAlert: UIAlertController! = nil;
     var alert: UIAlertController! = nil;
 
-    var delegate: UISplitViewControllerDelegate! = nil
+    var tabBarContrl: TabBarController? = nil
 
     override func viewDidAppear(animated: Bool) {
         let (data, error) = Locksmith.loadDataForUserAccount("myUserAccount")
@@ -69,22 +69,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         API.login(usernameTextField.text, password: passwordTextField.text){
             data, response, error in
             self.loadingAlert.dismissViewControllerAnimated(true){
-
                 if let error = data.objectForKey("error") as! String!{
                     self.alert.title = error
                     self.alert.message = data.objectForKey("error_description") as? String
 
                     self.presentViewController(self.alert, animated: true, completion: nil)
                 } else {
-                    Client.accessToken = data.objectForKey("access_token") as! String!
-                    Client.refreshToken = data.objectForKey("refresh_token") as! String!
-                    Client.tokenType = data.objectForKey("token_type") as! String!
-                    Locksmith.deleteDataForUserAccount("myUserAccount")
-                    let error = Locksmith.saveData([
-                        "access_token": Client.accessToken,
-                        "refresh_token": Client.refreshToken,
-                        "token_type": Client.tokenType
-                        ], forUserAccount: "myUserAccount")
                     self.performSegueWithIdentifier("afterLoginSegue", sender: self)
                 }
             }
@@ -93,8 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "afterLoginSegue" {
-//            let controller = segue.destinationViewController as! UISplitViewController
-//            controller.delegate = self.delegate
+            self.tabBarContrl = (segue.destinationViewController as! TabBarController)
         }
     }
 

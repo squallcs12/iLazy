@@ -19,7 +19,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        self.searchBar.delegate = self
 
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -105,7 +104,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
                     self.tableView.reloadData()
-                    Alert.hideLoading();
+                    Alert.hideLoading(nil);
                 })
             } else {
 

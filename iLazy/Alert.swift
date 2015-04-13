@@ -34,8 +34,8 @@ class Alert{
 
     }
 
-    class func hideLoading(){
-        AlertVar.loadingAlert.dismissViewControllerAnimated(true, completion: nil)
+    class func hideLoading(completion: (() -> Void)?){
+        AlertVar.loadingAlert.dismissViewControllerAnimated(true, completion: completion)
     }
 
     class func error(controller: UIViewController, message: String = "", completion: (() -> Void)?){
