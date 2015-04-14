@@ -21,12 +21,12 @@ public struct App {
     }
 }
 
-class MasterViewController: UITableViewController, UISearchBarDelegate {
+class MasterViewController: UITableViewController, UISearchBarDelegate, UISplitViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var objects = [App]()
 
-    var showPrice: Bool = false
+    var loading: Bool = false
 
 
     override func awakeFromNib() {
@@ -41,14 +41,18 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if let split = self.splitViewController {
+            split.delegate = self
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
         self.browseOnlinePackage(self)
     }
 
-    func setupBrowseList(){
-        self.showPrice = true
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.loading {
+            Alert.loading(self, message: "Loading...", completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,10 +65,14 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
 
-    func browseOnlinePackage(sender: AnyObject) {
-        self.setupBrowseList()
-        self.clearTable()
+    @IBAction func refreshOnlinePackage(sender: AnyObject) {
         Alert.loading(self, message: "Loading...", completion: nil)
+        self.browseOnlinePackage(sender)
+    }
+
+    func browseOnlinePackage(sender: AnyObject) {
+        self.clearTable()
+        self.loading = true
         API.fetchApps(){
             data, response, error in
             if data.objectForKey("success") as! Bool {
@@ -79,6 +87,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
                     self.tableView.reloadData()
+                    self.loading = false
                     Alert.hideLoading(nil)
                 })
             } else {
@@ -130,6 +139,20 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+
+    // MARK: split view
+
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
+        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
+            if let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController {
+                if topAsDetailController.detailItem == nil {
+                    // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+                    return true
+                }
+            }
+        }
+        return false
     }
 }
 
