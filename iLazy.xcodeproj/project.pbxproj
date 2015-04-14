@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		971850D21ADCB1F50080FFBD /* LazyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971850D11ADCB1F50080FFBD /* LazyTableViewController.swift */; };
+		971850D41ADCF95D0080FFBD /* OrderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971850D31ADCF95D0080FFBD /* OrderScrollView.swift */; };
 		972A5C4B1AD9051500120C2B /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C491AD9051500120C2B /* Locksmith.swift */; };
 		972A5C4C1AD9051500120C2B /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */; };
 		972A5C541ADB64A100120C2B /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C531ADB64A100120C2B /* AppCell.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		971850D11ADCB1F50080FFBD /* LazyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableViewController.swift; sourceTree = "<group>"; };
+		971850D31ADCF95D0080FFBD /* OrderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderScrollView.swift; sourceTree = "<group>"; };
 		972A5C491AD9051500120C2B /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
 		972A5C4A1AD9051500120C2B /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		972A5C531ADB64A100120C2B /* AppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				972A5C631ADBC58300120C2B /* SearchTableViewController.swift */,
 				972A5C651ADBD03900120C2B /* ResultAppCell.swift */,
 				971850D11ADCB1F50080FFBD /* LazyTableViewController.swift */,
+				971850D31ADCF95D0080FFBD /* OrderScrollView.swift */,
 			);
 			path = iLazy;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				972A5C4C1AD9051500120C2B /* LocksmithRequest.swift in Sources */,
 				972A5C541ADB64A100120C2B /* AppCell.swift in Sources */,
 				97AE75CB1AD8D309006BFE07 /* LoginViewController.swift in Sources */,
+				971850D41ADCF95D0080FFBD /* OrderScrollView.swift in Sources */,
 				972A5C581ADB758800120C2B /* TabBarController.swift in Sources */,
 				97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */,
 				97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */,

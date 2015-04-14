@@ -8,7 +8,9 @@
 
 import UIKit
 
-class LazyTableViewController: UITableViewController {
+class LazyTableViewController: UITableViewController, UISplitViewControllerDelegate {
+
+    private var collapseDetailViewController = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,7 @@ class LazyTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.splitViewController?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +40,10 @@ class LazyTableViewController: UITableViewController {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return 0
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        collapseDetailViewController = false
     }
 
     /*
@@ -93,5 +100,15 @@ class LazyTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    // MARK: - UISplitViewControllerDelegate
+
+
+
+    // MARK: split view
+
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
+        return collapseDetailViewController
+    }
 
 }
