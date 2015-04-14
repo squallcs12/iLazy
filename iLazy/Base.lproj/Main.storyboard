@@ -36,7 +36,7 @@
                                 <rect key="frame" x="20" y="292" width="560" height="17"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -92,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="-1584" y="550"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--Search-->
         <scene sceneID="mtx-tA-h3A">
             <objects>
                 <tableViewController id="MpO-3j-pyY" customClass="SearchTableViewController" customModule="iLazy" customModuleProvider="target" sceneMemberID="viewController">
@@ -105,25 +105,63 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="e4K-33-2bg" id="CLp-lS-tqZ"/>
+                                <outlet property="delegate" destination="MpO-3j-pyY" id="KF5-Z4-29w"/>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultCell" id="6EF-3m-Ec3">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultCell" rowHeight="60" id="6EF-3m-Ec3" customClass="ResultAppCell" customModule="iLazy" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6EF-3m-Ec3" id="wSO-zD-Nl0">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="website.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4X-G8-OHu">
+                                            <rect key="frame" x="8" y="30" width="504" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-XT-UdQ">
+                                            <rect key="frame" x="512" y="25" width="80" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="sPJ-ae-YyE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAi-Eg-eqM">
+                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ECZ-XT-UdQ" firstAttribute="top" secondItem="cAi-Eg-eqM" secondAttribute="bottom" constant="-4" id="1NU-Fy-dMm"/>
+                                        <constraint firstItem="cAi-Eg-eqM" firstAttribute="trailing" secondItem="wSO-zD-Nl0" secondAttribute="trailingMargin" id="1w8-QG-8Nw"/>
+                                        <constraint firstItem="e4X-G8-OHu" firstAttribute="top" secondItem="cAi-Eg-eqM" secondAttribute="bottom" constant="1" id="74K-TJ-M8z"/>
+                                        <constraint firstItem="cAi-Eg-eqM" firstAttribute="top" secondItem="wSO-zD-Nl0" secondAttribute="topMargin" id="C9M-qt-meT"/>
+                                        <constraint firstItem="e4X-G8-OHu" firstAttribute="leading" secondItem="wSO-zD-Nl0" secondAttribute="leadingMargin" id="cU2-Am-FvS"/>
+                                        <constraint firstItem="ECZ-XT-UdQ" firstAttribute="leading" secondItem="e4X-G8-OHu" secondAttribute="trailing" id="vUe-Vr-kT5"/>
+                                        <constraint firstItem="ECZ-XT-UdQ" firstAttribute="trailing" secondItem="wSO-zD-Nl0" secondAttribute="trailingMargin" id="wdx-7M-FlV"/>
+                                        <constraint firstItem="cAi-Eg-eqM" firstAttribute="leading" secondItem="wSO-zD-Nl0" secondAttribute="leadingMargin" id="zLw-bd-xZ7"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="cAi-Eg-eqM" id="RjO-gn-sdi"/>
+                                    <outlet property="priceLabel" destination="ECZ-XT-UdQ" id="Ypt-iO-CAL"/>
+                                    <outlet property="siteLabel" destination="e4X-G8-OHu" id="Dva-5F-s88"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="MpO-3j-pyY" id="E9c-za-MgK"/>
-                            <outlet property="delegate" destination="MpO-3j-pyY" id="klc-BX-MqG"/>
+                            <outlet property="delegate" destination="MpO-3j-pyY" id="e4L-OQ-elM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Aox-ZE-GNf"/>
+                    <navigationItem key="navigationItem" title="Search" id="Aox-ZE-GNf"/>
                     <connections>
                         <outlet property="searchBar" destination="qDh-OI-gm0" id="etd-ca-C2K"/>
+                        <segue destination="JEX-9P-axG" kind="show" identifier="showAppDetail" id="OkO-Us-iQE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dN-ap-emL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,7 +187,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scw-ag-BBO">
                                             <rect key="frame" x="8" y="8" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb9-1Q-xl2">
@@ -158,13 +196,13 @@
                                                 <constraint firstAttribute="width" constant="80" id="hGc-xY-KmV"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9a-zU-hYa">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="website.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9a-zU-hYa">
                                             <rect key="frame" x="8" y="29" width="504" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -305,13 +343,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kaq-bd-fwi" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2244" y="550"/>
+            <point key="canvasLocation" x="-2303" y="1293"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="I7C-hk-w32">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bCh-Jv-UnU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uHV-yB-CVw"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="uHV-yB-CVw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="529-eg-Ctg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -329,5 +367,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="OkO-Us-iQE"/>
     </inferredMetricsTieBreakers>
 </document>
