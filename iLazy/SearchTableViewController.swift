@@ -115,4 +115,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
+
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.objects.removeAll(keepCapacity: true)
+            self.tableView.reloadData()
+        }
+    }
 }

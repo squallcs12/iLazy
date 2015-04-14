@@ -84,7 +84,7 @@ class API{
     }
 
     class func searchApps(keyword: String, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
-        let url = NSURL(string: self.getUrl("/api/apps/?keyword=\(keyword)"))
+        let url = NSURL(string: self.getUrl("/api/apps/?site=\(keyword)"))
         let request = NSMutableURLRequest(URL: url!)
         self.request(request, completionHandler: handler)
     }
