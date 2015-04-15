@@ -35,6 +35,8 @@ class OrderViewController: UIViewController{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
 
+        scrollView.contentSize = CGSizeMake(scrollView.contentSize.width, submitTopConstraint.constant + submitButton.bounds.height + 10)
+
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -64,8 +66,6 @@ class OrderViewController: UIViewController{
         let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue()
         let viewHeight = self.view.bounds.height
         bottomConstraint.constant = keyboardSize!.height - 50
-
-        scrollView.contentSize = CGSizeMake(scrollView.contentSize.width, submitTopConstraint.constant + submitButton.bounds.height + 10)
     }
 
     func keyboardWillHide(notification: NSNotification){
