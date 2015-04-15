@@ -164,7 +164,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.51698157160000002" blue="0.1438532937" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7pS-0v-XXs" secondAttribute="bottom" constant="260" id="1je-kz-eFQ"/>
                                     <constraint firstItem="7pS-0v-XXs" firstAttribute="leading" secondItem="Vf5-d9-jf1" secondAttribute="leading" id="2GP-2f-m4Y"/>
@@ -255,14 +254,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Package usage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="392-3q-Jx2">
-                                <rect key="frame" x="54" y="170" width="201" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="392-3q-Jx2">
+                                <rect key="frame" x="16" y="28" width="568" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="392-3q-Jx2" firstAttribute="top" secondItem="OZl-LN-1Se" secondAttribute="bottom" constant="8" id="05G-hO-KEG"/>
+                            <constraint firstItem="392-3q-Jx2" firstAttribute="trailing" secondItem="pOC-8X-mmx" secondAttribute="trailingMargin" id="EW9-da-S1S"/>
+                            <constraint firstItem="392-3q-Jx2" firstAttribute="leading" secondItem="pOC-8X-mmx" secondAttribute="leadingMargin" id="Xbe-ks-6OY"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZH-LI-Oze" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,10 +281,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="wNJ-Ju-qnZ">
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="wNJ-Ju-qnZ">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="eVI-bf-Eme" id="KaH-ds-pDL"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="localCell" id="71T-Rm-n0Q">
@@ -507,7 +514,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jCi-W4-XJn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" id="jCi-W4-XJn">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jCi-W4-XJn" id="6ZH-CR-xlC">
                                     <autoresizingMask key="autoresizingMask"/>

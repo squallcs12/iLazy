@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LazyTableViewController: UITableViewController, UISplitViewControllerDelegate {
+class LazyTableViewController: UITableViewController, UISplitViewControllerDelegate, UISearchBarDelegate {
 
     private var collapseDetailViewController = true
 
@@ -44,6 +44,11 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         collapseDetailViewController = false
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
 
     /*
