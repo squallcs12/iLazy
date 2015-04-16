@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class LazyTableViewController: UITableViewController, UISplitViewControllerDelegate, UISearchBarDelegate {
 
-    var objects = [AppInfo]()
+    var objects = [App]()
 
     // Retreive the managedObjectContext from AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -25,9 +26,7 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.splitViewController?.delegate = self
 
-
-        // Print it to the console
-        println(managedObjectContext)
+        self.fetchAppList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,22 +80,49 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         API.myApps(){
             data, response, error in
             if data.objectForKey("success") as! Bool {
-                let apps = data.objectForKey("apps") as! NSArray
-                var indexPaths = [NSIndexPath]()
-                for _app in apps {
-                    var app = AppInfo.fromDict(_app as! NSDictionary)
-                    var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
-                    indexPaths.append(indexPath)
-                    self.objects.append(app)
+
+                let fetchRequest = NSFetchRequest(entityName: "App")
+
+                if let fetchResults = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [App] {
+                    for obj in fetchResults {
+                        self.managedObjectContext!.deleteObject(obj)
+                    }
                 }
+
+                let apps = data.objectForKey("apps") as! NSArray
+                for _app in apps {
+                    let appInfo = AppInfo.fromDict(_app as! NSDictionary)
+                    let newItem = NSEntityDescription.insertNewObjectForEntityForName("App", inManagedObjectContext: self.managedObjectContext!) as! App
+                    newItem.name = appInfo.name
+                    newItem.site = appInfo.site
+                }
+                self.managedObjectContext!.save(nil)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-                    self.tableView.reloadData()
                     Alert.hideLoading(nil)
+                    self.fetchAppList()
                 })
             }
         }
     }
+
+    // Fetch app list from core data into table view
+    func fetchAppList(){
+        let fetchRequest = NSFetchRequest(entityName: "App")
+
+        if let fetchResults = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [App] {
+            var indexPaths = [NSIndexPath]()
+
+            for obj in fetchResults {
+                var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
+                indexPaths.append(indexPath)
+                self.objects.append(obj)
+            }
+
+            self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+            self.tableView.reloadData()
+        }
+    }
+
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell

@@ -10,7 +10,7 @@ import UIKit
 
 class LazyViewController: UIViewController {
 
-    var detailItem: AppInfo? {
+    var detailItem: App? {
         didSet {
             // Update the view.
             self.configureView()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="App" representedClassName="PRODUCT_MODULE_NAME.App" syncable="YES">
+    <entity name="App" representedClassName="iLazy.App" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,12 +8,12 @@
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Param" inverseName="app" inverseEntity="Param" syncable="YES"/>
         <relationship name="relationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" inverseName="app" inverseEntity="Instance" syncable="YES"/>
     </entity>
-    <entity name="Instance" representedClassName="PRODUCT_MODULE_NAME.Instance" syncable="YES">
+    <entity name="Instance" representedClassName="iLazy.Instance" syncable="YES">
         <attribute name="params" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="result_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="relationship1" inverseEntity="App" syncable="YES"/>
     </entity>
-    <entity name="Param" representedClassName="PRODUCT_MODULE_NAME.Param" syncable="YES">
+    <entity name="Param" representedClassName="iLazy.Param" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="options" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
