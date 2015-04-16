@@ -33,6 +33,10 @@ class API{
         }
         var task = Client.session.dataTaskWithRequest(request){
             data, response, error in
+            if error != nil && error.domain == "NSURLErrorDomain" {
+                return;
+            }
+
             var response = response as! NSHTTPURLResponse
             var data: NSDictionary = (NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as! NSDictionary)
             if response.statusCode == 403 {
@@ -79,6 +83,12 @@ class API{
 
     class func fetchApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         let url = NSURL(string: self.getUrl("/api/apps/"))
+        let request = NSMutableURLRequest(URL: url!)
+        self.request(request, completionHandler: handler)
+    }
+
+    class func myApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/api/my_apps/"))
         let request = NSMutableURLRequest(URL: url!)
         self.request(request, completionHandler: handler)
     }

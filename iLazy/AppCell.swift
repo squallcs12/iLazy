@@ -25,7 +25,7 @@ class AppCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setApp(obj: App){
+    func setApp(obj: AppInfo){
         self.nameLabel.text = obj.name
         self.siteLabel.text = obj.site
         self.priceLabel.text = String(format: "%0.2f", obj.price)

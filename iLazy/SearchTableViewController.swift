@@ -13,7 +13,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
 
     var detailViewController: UIViewController? = nil
-    var objects = [App]()
+    var objects = [AppInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +100,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
                 let apps = data.objectForKey("apps") as! NSArray
                 var indexPaths = [NSIndexPath]()
                 for _app in apps {
-                    var app = App.fromDict(_app as! NSDictionary)
+                    var app = AppInfo.fromDict(_app as! NSDictionary)
                     var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
                     indexPaths.append(indexPath)
                     self.objects.append(app)

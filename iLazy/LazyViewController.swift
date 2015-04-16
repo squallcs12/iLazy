@@ -1,17 +1,14 @@
 //
-//  DetailViewController.swift
+//  LazyViewController.swift
 //  iLazy
 //
-//  Created by East Agile on 4/11/15.
+//  Created by East Agile on 4/16/15.
 //  Copyright (c) 2015 Antipro. All rights reserved.
 //
 
 import UIKit
 
-class DetailViewController: UIViewController {
-
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+class LazyViewController: UIViewController {
 
     var detailItem: AppInfo? {
         didSet {
@@ -23,9 +20,7 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.name
-            }
+            self.navigationItem.title = detail.name
         }
     }
 
@@ -33,7 +28,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
-        Static.detailController = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,5 +36,14 @@ class DetailViewController: UIViewController {
     }
 
 
-}
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

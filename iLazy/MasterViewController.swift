@@ -8,13 +8,13 @@
 
 import UIKit
 
-public struct App {
+public struct AppInfo {
     let name: String;
     let site: String;
     let price: Double;
 
-    static func fromDict(dict: NSDictionary) -> App{
-        return App(
+    static func fromDict(dict: NSDictionary) -> AppInfo{
+        return AppInfo(
             name: dict.objectForKey("name") as! String,
             site: dict.objectForKey("site") as! String,
             price: dict.objectForKey("price") as! Double)
@@ -24,7 +24,7 @@ public struct App {
 class MasterViewController: UITableViewController, UISearchBarDelegate, UISplitViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [App]()
+    var objects = [AppInfo]()
 
     var loading: Bool = false
 
@@ -79,7 +79,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate, UISplitV
                 let apps = data.objectForKey("apps") as! NSArray
                 var indexPaths = [NSIndexPath]()
                 for _app in apps {
-                    var app = App.fromDict(_app as! NSDictionary)
+                    var app = AppInfo.fromDict(_app as! NSDictionary)
                     var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
                     indexPaths.append(indexPath)
                     self.objects.append(app)

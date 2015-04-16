@@ -10,7 +10,10 @@ import UIKit
 
 class LazyTableViewController: UITableViewController, UISplitViewControllerDelegate, UISearchBarDelegate {
 
-    private var collapseDetailViewController = true
+    var objects = [AppInfo]()
+
+    // Retreive the managedObjectContext from AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,10 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.splitViewController?.delegate = self
+
+
+        // Print it to the console
+        println(managedObjectContext)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,22 +35,38 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         // Dispose of any resources that can be recreated.
     }
 
+
+    // MARK: - Segues
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showLazyDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let object = objects[indexPath.row]
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! LazyViewController
+                controller.detailItem = object
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
+        }
+    }
+
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        return objects.count
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        collapseDetailViewController = false
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("localCell", forIndexPath: indexPath) as! UITableViewCell
+        let obj = self.objects[indexPath.row]
+        cell.textLabel?.text = obj.name
+        cell.detailTextLabel?.text = obj.site
+        return cell
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -51,6 +74,29 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         searchBar.resignFirstResponder()
     }
 
+    @IBAction func reloadPressed(sender: AnyObject) {
+        self.objects.removeAll(keepCapacity: true)
+        self.tableView.reloadData()
+        Alert.loading(self, message: "Loading apps list from server...", completion: nil)
+        API.myApps(){
+            data, response, error in
+            if data.objectForKey("success") as! Bool {
+                let apps = data.objectForKey("apps") as! NSArray
+                var indexPaths = [NSIndexPath]()
+                for _app in apps {
+                    var app = AppInfo.fromDict(_app as! NSDictionary)
+                    var indexPath = NSIndexPath(forRow: indexPaths.count, inSection: 0)
+                    indexPaths.append(indexPath)
+                    self.objects.append(app)
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+                    self.tableView.reloadData()
+                    Alert.hideLoading(nil)
+                })
+            }
+        }
+    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
@@ -113,7 +159,14 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
     // MARK: split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
-        return collapseDetailViewController
+        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
+            if let topAsDetailController = secondaryAsNavController.topViewController as? LazyViewController {
+                if topAsDetailController.detailItem == nil {
+                    // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+                    return true
+                }
+            }
+        }
+        return false
     }
-
 }
