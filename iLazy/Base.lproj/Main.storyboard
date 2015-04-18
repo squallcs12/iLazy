@@ -195,6 +195,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="alK-3F-kqp" firstAttribute="top" secondItem="HW8-v4-xND" secondAttribute="bottom" id="DiN-Gx-Yxu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="alK-3F-kqp" secondAttribute="trailing" constant="-16" id="ENZ-qX-Ueq"/>

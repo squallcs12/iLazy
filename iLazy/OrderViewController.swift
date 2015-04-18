@@ -28,7 +28,6 @@ class OrderViewController: UIViewController{
         stepsTextField.layer.borderWidth = 1.0
         stepsTextField.layer.cornerRadius = 5
 
-        scrollView.contentSize = CGSizeMake(scrollView.contentSize.width, submitTopConstraint.constant + submitButton.bounds.height + 10)
     }
     override func viewDidAppear(animated: Bool) {
 
@@ -36,6 +35,7 @@ class OrderViewController: UIViewController{
         // keyboard notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        scrollView.contentSize = CGSizeMake(scrollView.contentSize.width, submitTopConstraint.constant + submitButton.bounds.height + 10)
 
     }
 
