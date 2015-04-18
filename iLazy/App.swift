@@ -15,6 +15,7 @@ class App: NSManagedObject {
     @NSManaged var site: String
     @NSManaged var introduction: String
     @NSManaged var id: NSNumber
+    @NSManaged var price: NSNumber
     @NSManaged var relationship: Param
     @NSManaged var relationship1: Instance
 

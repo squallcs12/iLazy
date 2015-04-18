@@ -95,6 +95,8 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
                     let newItem = NSEntityDescription.insertNewObjectForEntityForName("App", inManagedObjectContext: self.managedObjectContext!) as! App
                     newItem.name = appInfo.name
                     newItem.site = appInfo.site
+                    newItem.id = appInfo.id
+                    newItem.price = appInfo.price
                 }
                 self.managedObjectContext!.save(nil)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

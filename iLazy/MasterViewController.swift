@@ -11,13 +11,20 @@ import UIKit
 public struct AppInfo {
     let name: String;
     let site: String;
-    let price: Double;
+    let price: NSNumber;
+    let id: NSNumber;
 
     static func fromDict(dict: NSDictionary) -> AppInfo{
         return AppInfo(
             name: dict.objectForKey("name") as! String,
             site: dict.objectForKey("site") as! String,
-            price: dict.objectForKey("price") as! Double)
+            price: dict.objectForKey("price") as! NSNumber,
+            id: dict.objectForKey("id") as! NSNumber
+        )
+    }
+
+    static func fromApp(app: App) -> AppInfo{
+        return AppInfo(name: app.name, site: app.site, price: app.price, id: app.id)
     }
 }
 

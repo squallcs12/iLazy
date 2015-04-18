@@ -35,6 +35,15 @@ class LazyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewAppDetail" {
+            let controller = segue.destinationViewController as! DetailViewController
+            controller.detailItem = AppInfo.fromApp(detailItem!)
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
+    }
+
 
     /*
     // MARK: - Navigation

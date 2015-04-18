@@ -4,6 +4,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Param" inverseName="app" inverseEntity="Param" syncable="YES"/>
         <relationship name="relationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" inverseName="app" inverseEntity="Instance" syncable="YES"/>
@@ -20,8 +21,8 @@
         <relationship name="app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="relationship" inverseEntity="App" syncable="YES"/>
     </entity>
     <elements>
-        <element name="App" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Param" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="App" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="Instance" positionX="-45" positionY="63" width="128" height="90"/>
+        <element name="Param" positionX="-54" positionY="18" width="128" height="105"/>
     </elements>
 </model>
