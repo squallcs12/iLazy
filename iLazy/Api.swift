@@ -27,6 +27,16 @@ class API{
         return "\(Client.schema)://\(Client.host)\(url)";
     }
 
+    class func showLoginBox(){
+        Locksmith.deleteDataForUserAccount("myUserAccount")
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            Alert.hideLoading(){
+                let loginViewController = Static.delegate!.window!.rootViewController as! LoginViewController
+                loginViewController.tabBarContrl?.performSegueWithIdentifier("showLoginForm", sender: API())
+            }
+        })
+    }
+
     class func request(request: NSMutableURLRequest, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         if Client.accessToken != "" {
             request.setValue("\(Client.tokenType) \(Client.accessToken)", forHTTPHeaderField: "Authorization")
@@ -40,17 +50,13 @@ class API{
             var response = response as! NSHTTPURLResponse
             var data: NSDictionary = (NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as! NSDictionary)
             if response.statusCode == 403 {
-                Client.isLogin = false
-                println("Show login box")
+                API.showLoginBox()
                 return
             } else if response.statusCode == 401 {
                 let error = data.objectForKey("error") as! String!
                 if error != nil && error == "invalid_grant" {
                     Locksmith.deleteDataForUserAccount("myUserAccount")
-                    Alert.hideLoading(){
-                        let loginViewController = Static.delegate!.window!.rootViewController as! LoginViewController
-                        loginViewController.tabBarContrl?.performSegueWithIdentifier("showLoginForm", sender: API())
-                    }
+                    API.showLoginBox()
                     return
                 }
                 Client.accessToken = ""
@@ -141,5 +147,13 @@ class API{
             ], forUserAccount: "myUserAccount")
     }
 
+    class func purchaseApp(appId: Int, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/api/purchase/"))
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
 
+        let postData = "app=\(appId)"
+        request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)
+        API.request(request, completionHandler: handler)
+    }
 }

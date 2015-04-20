@@ -28,7 +28,7 @@ class ResultAppCell: UITableViewCell {
     func setApp(obj: AppInfo){
         self.nameLabel.text = obj.name
         self.siteLabel.text = obj.site
-        self.priceLabel.text = String(format: "%0.2f", obj.price)
+        self.priceLabel.text = String(format: "%dC", obj.price)
     }
 
 

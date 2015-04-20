@@ -36,19 +36,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="app name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjP-wu-OZd">
-                                        <rect key="frame" x="8" y="8" width="584" height="20"/>
+                                        <rect key="frame" x="8" y="8" width="512" height="20"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AwE-lo-Qc0">
-                                        <rect key="frame" x="546" y="36" width="46" height="30"/>
+                                        <rect key="frame" x="532" y="36" width="60" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="ajj-Im-5rD"/>
+                                            <constraint firstAttribute="width" constant="60" id="ajj-Im-5rD"/>
                                         </constraints>
                                         <state key="normal" title="Price">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="1" green="0.58575264419999995" blue="0.35874006930000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="priceButtonPressed:" destination="JEX-9P-axG" eventType="touchUpInside" id="3Cl-9C-KPa"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Introduction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9T-pd-UqG">
                                         <rect key="frame" x="8" y="75" width="584" height="21"/>
@@ -83,7 +93,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="website.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCb-D3-VCt">
-                                        <rect key="frame" x="8" y="36" width="530" height="17"/>
+                                        <rect key="frame" x="8" y="36" width="516" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -110,6 +120,15 @@
                                             <outlet property="delegate" destination="JEX-9P-axG" id="7Bv-Om-FS5"/>
                                         </connections>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Api 01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20D-7X-ZAw">
+                                        <rect key="frame" x="532" y="8" width="60" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="QVg-C2-Sb7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="fLE-MX-a1d" secondAttribute="trailing" constant="8" id="2a9-qR-u4C"/>
@@ -128,14 +147,15 @@
                                     <constraint firstItem="pW3-wL-YlF" firstAttribute="top" secondItem="YWa-nf-WYN" secondAttribute="bottom" constant="8" id="LJB-fS-mpz"/>
                                     <constraint firstAttribute="trailing" secondItem="pPY-Xi-mDQ" secondAttribute="trailing" constant="8" id="M69-EQ-S1K"/>
                                     <constraint firstAttribute="trailing" secondItem="AwE-lo-Qc0" secondAttribute="trailing" constant="8" id="PWK-Sb-7SO"/>
-                                    <constraint firstAttribute="trailing" secondItem="SjP-wu-OZd" secondAttribute="trailing" constant="8" id="QOz-EF-bqZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="SjP-wu-OZd" secondAttribute="trailing" constant="80" id="QOz-EF-bqZ"/>
                                     <constraint firstItem="YWa-nf-WYN" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="W7g-aQ-bfu"/>
                                     <constraint firstItem="Ymm-Kw-WEv" firstAttribute="top" secondItem="8Wi-SE-DYl" secondAttribute="bottom" constant="8" id="XJs-dC-qy4"/>
+                                    <constraint firstAttribute="trailing" secondItem="20D-7X-ZAw" secondAttribute="trailing" constant="8" id="cW7-v7-zxE"/>
+                                    <constraint firstAttribute="centerX" secondItem="w9T-pd-UqG" secondAttribute="centerX" id="eBG-hf-hNG"/>
                                     <constraint firstItem="AwE-lo-Qc0" firstAttribute="leading" secondItem="xCb-D3-VCt" secondAttribute="trailing" constant="8" id="eUj-7l-TPp"/>
                                     <constraint firstAttribute="trailing" secondItem="JD5-OU-1eO" secondAttribute="trailing" constant="8" id="eZj-EU-Ml2"/>
                                     <constraint firstItem="pW3-wL-YlF" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="eq4-bz-4Mq"/>
                                     <constraint firstItem="8Wi-SE-DYl" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="ezw-xZ-qz0"/>
-                                    <constraint firstAttribute="centerX" secondItem="SjP-wu-OZd" secondAttribute="centerX" id="kGH-Kx-IOs"/>
                                     <constraint firstAttribute="trailing" secondItem="YWa-nf-WYN" secondAttribute="trailing" constant="8" id="l9K-2h-9eT"/>
                                     <constraint firstItem="YWa-nf-WYN" firstAttribute="top" secondItem="JD5-OU-1eO" secondAttribute="bottom" constant="8" id="m9D-ly-fWE"/>
                                     <constraint firstAttribute="trailing" secondItem="w9T-pd-UqG" secondAttribute="trailing" constant="8" id="oYT-YG-2N6"/>
@@ -144,6 +164,7 @@
                                     <constraint firstItem="xCb-D3-VCt" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="t75-XI-lIE"/>
                                     <constraint firstItem="JD5-OU-1eO" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="tSG-7K-lvQ"/>
                                     <constraint firstItem="fLE-MX-a1d" firstAttribute="leading" secondItem="pTx-9t-FaK" secondAttribute="leading" constant="8" id="xgS-0b-QeO"/>
+                                    <constraint firstItem="20D-7X-ZAw" firstAttribute="top" secondItem="pTx-9t-FaK" secondAttribute="top" constant="8" id="zTU-3l-Yut"/>
                                     <constraint firstAttribute="trailing" secondItem="8Wi-SE-DYl" secondAttribute="trailing" constant="8" id="zz8-Oc-iE1"/>
                                 </constraints>
                             </scrollView>
@@ -160,6 +181,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="appNameLabel" destination="SjP-wu-OZd" id="hVq-57-6hF"/>
+                        <outlet property="expiresLabel" destination="20D-7X-ZAw" id="ybd-lz-9DM"/>
                         <outlet property="introductionTextView" destination="pPY-Xi-mDQ" id="W1c-pI-oFZ"/>
                         <outlet property="parametersTextView" destination="Ymm-Kw-WEv" id="WOA-hk-iKO"/>
                         <outlet property="priceButton" destination="AwE-lo-Qc0" id="2sZ-ct-jaF"/>

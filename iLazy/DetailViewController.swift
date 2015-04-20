@@ -13,6 +13,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var siteLabel: UILabel!
+    @IBOutlet weak var expiresLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     @IBOutlet weak var introductionTextView: UITextView!
     @IBOutlet weak var requestSiteTextView: UITextView!
@@ -30,9 +31,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
 
         if let detail = self.detailItem {
-            appNameLabel.text = detail.name
+//            appNameLabel.text = detail.name
             siteLabel.text = detail.site
-            priceButton.setTitle(String(format: "%d", detail.price), forState: UIControlState.Normal)
+            priceButton.setTitle(String(format: "%dC", detail.price), forState: .Normal)
 
             API.fetchApp(detail.id) {
                 data, response, error in
@@ -51,6 +52,29 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
     }
 
+    @IBAction func priceButtonPressed(sender: AnyObject) {
+        if self.priceButton.titleLabel?.text == "Buy" {
+            self.priceButton.setTitle("Buying", forState: .Normal)
+            self.expiresLabel.text = "..."
+            self.priceButton.enabled = false
+
+            API.purchaseApp(detailItem?.id as! Int){
+                data, response, error in
+                if data.objectForKey("success") as! Bool {
+                    let userApp = data.objectForKey("user_app") as! NSDictionary
+                    let expiresStr = userApp.objectForKey("expires_str") as! String
+                    self.expiresLabel.text = expiresStr
+
+                    self.priceButton.backgroundColor = UIColor.blueColor()
+                    self.priceButton.enabled = true
+                    self.priceButton.setTitle(String(format: "%dC", self.detailItem!.price), forState: .Normal)
+                }
+            }
+        } else {
+            self.priceButton.setTitle("Buy", forState: UIControlState.Normal)
+            self.priceButton.backgroundColor = UIColor(red: 82/255.0, green: 210/255.0, blue: 102/255.0, alpha: 1)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
