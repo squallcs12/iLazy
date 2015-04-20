@@ -52,6 +52,12 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
     }
 
+    func resetPriceButton(){
+        self.priceButton.backgroundColor = self.expiresLabel.textColor
+        self.priceButton.enabled = true
+        self.priceButton.setTitle(String(format: "%dC", self.detailItem!.price), forState: .Normal)
+    }
+
     @IBAction func priceButtonPressed(sender: AnyObject) {
         if self.priceButton.titleLabel?.text == "Buy" {
             self.priceButton.setTitle("Buying", forState: .Normal)
@@ -60,14 +66,17 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
             API.purchaseApp(detailItem?.id as! Int){
                 data, response, error in
+
                 if data.objectForKey("success") as! Bool {
                     let userApp = data.objectForKey("user_app") as! NSDictionary
                     let expiresStr = userApp.objectForKey("expires_str") as! String
                     self.expiresLabel.text = expiresStr
-
-                    self.priceButton.backgroundColor = UIColor.blueColor()
-                    self.priceButton.enabled = true
-                    self.priceButton.setTitle(String(format: "%dC", self.detailItem!.price), forState: .Normal)
+                    self.resetPriceButton()
+                } else {
+                    let errors = data.objectForKey("errors") as! NSArray
+                    Alert.error(self, message: errors[0].objectForKey("message") as! String){
+                        self.resetPriceButton()
+                    }
                 }
             }
         } else {
