@@ -9,22 +9,37 @@
 import UIKit
 
 public struct AppInfo {
-    let name: String;
-    let site: String;
-    let price: NSNumber;
-    let id: NSNumber;
+    let name: String
+    let site: String
+    let price: NSNumber
+    let id: NSNumber
+    let expires: NSDate?
+
+    static var dateFormater = NSDateFormatter()
 
     static func fromDict(dict: NSDictionary) -> AppInfo{
         return AppInfo(
             name: dict.objectForKey("name") as! String,
             site: dict.objectForKey("site") as! String,
             price: dict.objectForKey("price") as! NSNumber,
-            id: dict.objectForKey("id") as! NSNumber
+            id: dict.objectForKey("id") as! NSNumber,
+            expires: nil
         )
     }
 
     static func fromApp(app: App) -> AppInfo{
-        return AppInfo(name: app.name, site: app.site, price: app.price, id: app.id)
+        return AppInfo(name: app.name, site: app.site, price: app.price, id: app.id, expires:app.expires)
+    }
+
+    func expiresStr() -> String{
+        return AppInfo.expiresStr(self.expires)
+    }
+
+    static func expiresStr(date: NSDate?) -> String {
+        if date == nil {
+            return ""
+        }
+        return AppInfo.dateFormater.stringFromDate(date!)
     }
 }
 

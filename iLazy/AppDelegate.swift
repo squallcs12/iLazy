@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
 //        splitViewController.delegate = self
         Static.delegate = self
+
+        AppInfo.dateFormater.dateFormat = "LLL dd"
+
         return true
     }
 

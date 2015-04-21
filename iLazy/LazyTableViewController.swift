@@ -16,6 +16,8 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
     // Retreive the managedObjectContext from AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
+    static var needReloaded = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,9 +31,21 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         self.fetchAppList()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if LazyTableViewController.needReloaded {
+            LazyTableViewController.needReloaded = false
+            self.fetchAppList()
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+
+        self.clearTable()
+        LazyTableViewController.needReloaded = true
     }
 
 
@@ -73,9 +87,13 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
         searchBar.resignFirstResponder()
     }
 
-    @IBAction func reloadPressed(sender: AnyObject) {
+    func clearTable(){
         self.objects.removeAll(keepCapacity: true)
         self.tableView.reloadData()
+    }
+
+    @IBAction func reloadPressed(sender: AnyObject) {
+        self.clearTable()
         Alert.loading(self, message: "Loading apps list from server...", completion: nil)
         API.myApps(){
             data, response, error in
@@ -88,15 +106,10 @@ class LazyTableViewController: UITableViewController, UISplitViewControllerDeleg
                         self.managedObjectContext!.deleteObject(obj)
                     }
                 }
-
-                let apps = data.objectForKey("apps") as! NSArray
-                for _app in apps {
-                    let appInfo = AppInfo.fromDict(_app as! NSDictionary)
-                    let newItem = NSEntityDescription.insertNewObjectForEntityForName("App", inManagedObjectContext: self.managedObjectContext!) as! App
-                    newItem.name = appInfo.name
-                    newItem.site = appInfo.site
-                    newItem.id = appInfo.id
-                    newItem.price = appInfo.price
+                self.managedObjectContext!.save(nil)
+                let userApps = data.objectForKey("userapps") as! NSArray
+                for userApp in userApps {
+                    let newItem = App.fromUserAppDict(userApp as! NSDictionary, context: self.managedObjectContext!)
                 }
                 self.managedObjectContext!.save(nil)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

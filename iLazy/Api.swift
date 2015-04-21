@@ -99,6 +99,12 @@ class API{
         self.request(request, completionHandler: handler)
     }
 
+    class func myApp(id: NSNumber, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/api/my_apps/\(id)/"))
+        let request = NSMutableURLRequest(URL: url!)
+        self.request(request, completionHandler: handler)
+    }
+
     class func myApps(completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
         let url = NSURL(string: self.getUrl("/api/my_apps/"))
         let request = NSMutableURLRequest(URL: url!)

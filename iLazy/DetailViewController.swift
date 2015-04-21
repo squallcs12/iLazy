@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController, UITextViewDelegate {
 
@@ -22,6 +23,10 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
 
     var detailItem: AppInfo?
+    var localItem: App?
+
+    // Retreive the managedObjectContext from AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -31,8 +36,10 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
 
         if let detail = self.detailItem {
-//            appNameLabel.text = detail.name
+            appNameLabel.text = detail.name
             siteLabel.text = detail.site
+            expiresLabel.text = ""
+            expiresLabel.text = detail.expiresStr()
             priceButton.setTitle(String(format: "%dC", detail.price), forState: .Normal)
 
             API.fetchApp(detail.id) {
@@ -46,6 +53,40 @@ class DetailViewController: UIViewController, UITextViewDelegate {
                         self.responseTextView.text = app.objectForKey("responses") as! String
                         self.parametersTextView.text = app.objectForKey("require_params") as! String
                     })
+                }
+            }
+
+
+            if localItem == nil {
+                // find in core data first
+                let request = NSFetchRequest(entityName: "App")
+
+                let pred = NSPredicate(format: "(id = %@)", detail.id)
+                request.predicate = pred
+
+                var error: NSError?
+
+                var objects = managedObjectContext?.executeFetchRequest(request,
+                    error: &error)
+                
+                if let results = objects {
+                    if results.count > 0 {
+                        self.localItem = results[0] as? App
+                        expiresLabel.text = AppInfo.expiresStr(localItem?.expires)
+                    } else {
+                        API.myApp(detail.id){
+                            data, response, error in
+                            if response.statusCode == 200 {
+                                let userApp = data.objectForKey("userapp") as! NSDictionary
+                                self.localItem = App.fromUserAppDict(userApp, context: self.managedObjectContext!)
+                                self.managedObjectContext?.save(nil)
+                                LazyTableViewController.needReloaded = true
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.expiresLabel.text = AppInfo.expiresStr(self.localItem?.expires)
+                                })
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -84,17 +125,18 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             self.priceButton.backgroundColor = UIColor(red: 82/255.0, green: 210/255.0, blue: 102/255.0, alpha: 1)
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
+
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
