@@ -42,13 +42,24 @@ class Alert{
         }
     }
 
-    class func error(controller: UIViewController, message: String = "", completion: (() -> Void)?){
+    class func initAlert(){
         if AlertVar.alert == nil {
-            AlertVar.alert = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+            AlertVar.alert = UIAlertController(title: "Error", message: "", preferredStyle: .Alert)
             AlertVar.alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-        } else {
-            AlertVar.alert.message = message
         }
+    }
+
+    class func error(controller: UIViewController, message: String = "", completion: (() -> Void)?){
+        Alert.initAlert()
+        AlertVar.alert.message = message
+        AlertVar.alert.title = "Error"
+        controller.presentViewController(AlertVar.alert, animated: true, completion: completion)
+    }
+
+    class func success(controller: UIViewController, message: String = "", completion: (() -> Void)?){
+        Alert.initAlert()
+        AlertVar.alert.message = message
+        AlertVar.alert.title = "Success"
         controller.presentViewController(AlertVar.alert, animated: true, completion: completion)
     }
 

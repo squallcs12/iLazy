@@ -19,6 +19,7 @@
 		972A5C641ADBC58300120C2B /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C631ADBC58300120C2B /* SearchTableViewController.swift */; };
 		972A5C661ADBD03900120C2B /* ResultAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A5C651ADBD03900120C2B /* ResultAppCell.swift */; };
 		972A5C691ADBD92400120C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972A5C671ADBD92400120C2B /* Main.storyboard */; };
+		97A563301AE6447400632766 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A5632F1AE6447400632766 /* CustomTextField.swift */; };
 		97AE75A71AD8D2BA006BFE07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */; };
 		97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75A81AD8D2BA006BFE07 /* MasterViewController.swift */; };
 		97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AE75AA1AD8D2BA006BFE07 /* DetailViewController.swift */; };
@@ -57,6 +58,7 @@
 		972A5C631ADBC58300120C2B /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		972A5C651ADBD03900120C2B /* ResultAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultAppCell.swift; sourceTree = "<group>"; };
 		972A5C681ADBD92400120C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97A5632F1AE6447400632766 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		97AE75A11AD8D2BA006BFE07 /* iLazy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLazy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AE75A51AD8D2BA006BFE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AE75A61AD8D2BA006BFE07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				971850D31ADCF95D0080FFBD /* OrderScrollView.swift */,
 				97FD07601ADF67B70055777D /* LazyViewController.swift */,
 				97FD07621ADF6DC70055777D /* App.xcdatamodeld */,
+				97A5632F1AE6447400632766 /* CustomTextField.swift */,
 			);
 			path = iLazy;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				97FD07641ADF6DC70055777D /* App.xcdatamodeld in Sources */,
 				972A5C581ADB758800120C2B /* TabBarController.swift in Sources */,
 				97AE75AB1AD8D2BA006BFE07 /* DetailViewController.swift in Sources */,
+				97A563301AE6447400632766 /* CustomTextField.swift in Sources */,
 				97FD076F1ADF789D0055777D /* Param.swift in Sources */,
 				97AE75A91AD8D2BA006BFE07 /* MasterViewController.swift in Sources */,
 				97FD07611ADF67B70055777D /* LazyViewController.swift in Sources */,

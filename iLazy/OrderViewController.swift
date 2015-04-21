@@ -29,6 +29,7 @@ class OrderViewController: UIViewController{
         stepsTextField.layer.cornerRadius = 5
 
     }
+
     override func viewDidAppear(animated: Bool) {
 
         super.viewDidAppear(animated)
@@ -50,7 +51,66 @@ class OrderViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
+    @IBAction func submitPressed(sender: AnyObject) {
+        if siteTextField.text == "" {
+            Alert.error(self, message: "Please enter website"){
+            }
+            return
+        }
+        if stepsTextField.text == "" {
+            Alert.error(self, message: "Please describe steps"){
+            }
+            return
+        }
+        if emailTextField.text == "" {
+            Alert.error(self, message: "Please enter contact email"){
+            }
+            return
+        }
+        if priceTextField.text == "" {
+            Alert.error(self, message: "Please choose an acceptable price"){
+            }
+            return
+        }
+        self.scrollView.endEditing(true)
+        Alert.loading(self, message: "Submitting...", completion: nil)
+        API.submitOrder(siteTextField.text, steps: stepsTextField.text, email: emailTextField.text, price: priceTextField.text){
+            data, response, error in
+            if data.objectForKey("success") as! Bool {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    Alert.hideLoading(){
+                        Alert.success(self, message: "Your order has been placed on our system"){
+                            self.emailTextField.text = ""
+                            self.siteTextField.text = ""
+                            self.stepsTextField.text = ""
+                            self.priceTextField.text = ""
+                        }
+                    }
+                })
+            } else {
+                var errorMessage = ""
+                let errors = data.objectForKey("errors") as! NSArray
+                let fieldErrors = errors[0] as! NSDictionary
+
+                for (field, errorList) in fieldErrors {
+                    errorMessage += (field as! String) + "\n"
+                    for error in (errorList as! NSArray) {
+                        errorMessage += (error as! String) + "\n"
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    Alert.hideLoading(){
+                        Alert.error(self, message: errorMessage){
+                        }
+                    }
+                })
+            }
+
+        }
+
+    }
 
     /*
     // MARK: - Navigation

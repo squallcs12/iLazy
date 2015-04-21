@@ -162,4 +162,15 @@ class API{
         request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)
         API.request(request, completionHandler: handler)
     }
+
+    class func submitOrder(website: String, steps: String, email: String, price: String, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        let url = NSURL(string: self.getUrl("/api/orders/"))
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+
+        let params = ["website": website, "email": email, "steps": steps, "price": price]
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        API.request(request, completionHandler: handler)
+    }
 }
