@@ -64,6 +64,8 @@ class Alert{
     }
 
     class func hideError(){
-        AlertVar.alert.dismissViewControllerAnimated(true, completion: nil)
+        if AlertVar.alert != nil {
+            AlertVar.alert.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }

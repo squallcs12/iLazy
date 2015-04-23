@@ -173,4 +173,17 @@ class API{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         API.request(request, completionHandler: handler)
     }
+
+    class func register(username: String, password: String, completionHandler handler: (NSDictionary!, NSHTTPURLResponse!, NSError!) -> Void){
+        Locksmith.deleteDataForUserAccount("myUserAccount")
+        Client.accessToken = ""
+        let url = NSURL(string: self.getUrl("/api/register/"))
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+
+        let params = ["username": username, "password": password]
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        API.request(request, completionHandler: handler)
+    }
 }

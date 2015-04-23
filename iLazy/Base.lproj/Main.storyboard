@@ -731,7 +731,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCt-M6-Cry">
-                                <rect key="frame" x="210" y="251" width="180" height="30"/>
+                                <rect key="frame" x="16" y="251" width="276" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="jCG-sg-aYV"/>
@@ -743,17 +743,49 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="jCG-sg-aYV"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="signinPressed:" destination="iel-Jo-VIF" eventType="touchUpInside" id="mz2-mz-SON"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bP4-0d-kjU">
+                                <rect key="frame" x="308" y="251" width="276" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="vpQ-E7-BeZ"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vpQ-E7-BeZ"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="registerPressed:" destination="iel-Jo-VIF" eventType="touchUpInside" id="Aj7-cs-tXV"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bP4-0d-kjU" firstAttribute="trailing" secondItem="JK3-bV-pww" secondAttribute="trailingMargin" id="5xf-MI-i3T"/>
                             <constraint firstItem="O9j-hZ-hOV" firstAttribute="trailing" secondItem="JK3-bV-pww" secondAttribute="trailingMargin" id="8nu-Ae-jNM"/>
+                            <constraint firstItem="bP4-0d-kjU" firstAttribute="height" secondItem="bCt-M6-Cry" secondAttribute="height" id="D5x-hg-FsL"/>
                             <constraint firstItem="bBi-tB-Rud" firstAttribute="trailing" secondItem="JK3-bV-pww" secondAttribute="trailingMargin" id="EKq-Zh-MGb"/>
                             <constraint firstItem="RBe-w7-eDd" firstAttribute="top" secondItem="V5Q-dz-oPq" secondAttribute="bottom" constant="40" id="EPC-03-9Lk"/>
                             <constraint firstItem="O9j-hZ-hOV" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="GBs-UY-IIu"/>
@@ -761,12 +793,15 @@
                             <constraint firstItem="yJs-J4-zZH" firstAttribute="trailing" secondItem="JK3-bV-pww" secondAttribute="trailingMargin" id="J68-bV-2C1"/>
                             <constraint firstItem="RBe-w7-eDd" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="Jv4-j3-41G"/>
                             <constraint firstItem="yJs-J4-zZH" firstAttribute="top" secondItem="O9j-hZ-hOV" secondAttribute="bottom" constant="8" id="L7H-b3-tcs"/>
-                            <constraint firstAttribute="centerX" secondItem="bCt-M6-Cry" secondAttribute="centerX" id="Mke-Qe-0eU"/>
+                            <constraint firstItem="bP4-0d-kjU" firstAttribute="width" secondItem="bCt-M6-Cry" secondAttribute="width" id="LM9-c5-YKf"/>
+                            <constraint firstItem="bP4-0d-kjU" firstAttribute="top" secondItem="yJs-J4-zZH" secondAttribute="bottom" constant="8" id="M89-J9-Pdo"/>
                             <constraint firstItem="V5Q-dz-oPq" firstAttribute="top" secondItem="IxL-PD-VPq" secondAttribute="bottom" constant="36" id="Pnz-lP-MU2"/>
                             <constraint firstItem="bCt-M6-Cry" firstAttribute="top" secondItem="yJs-J4-zZH" secondAttribute="bottom" constant="8" symbolic="YES" id="QlE-4C-Cgg"/>
+                            <constraint firstItem="bCt-M6-Cry" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="U1s-Rx-SWr"/>
                             <constraint firstItem="O9j-hZ-hOV" firstAttribute="top" secondItem="bBi-tB-Rud" secondAttribute="bottom" constant="8" id="Vva-L0-inF"/>
                             <constraint firstItem="V5Q-dz-oPq" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="XmV-el-wFc"/>
                             <constraint firstItem="RBe-w7-eDd" firstAttribute="trailing" secondItem="JK3-bV-pww" secondAttribute="trailingMargin" id="bhb-6F-fE1"/>
+                            <constraint firstItem="bP4-0d-kjU" firstAttribute="leading" secondItem="bCt-M6-Cry" secondAttribute="trailing" constant="16" id="d6M-Ga-Imk"/>
                             <constraint firstItem="yJs-J4-zZH" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="dKK-5P-xCL"/>
                             <constraint firstItem="bBi-tB-Rud" firstAttribute="leading" secondItem="JK3-bV-pww" secondAttribute="leadingMargin" id="vT4-5k-XN2"/>
                             <constraint firstAttribute="centerX" secondItem="V5Q-dz-oPq" secondAttribute="centerX" id="vmF-fs-bXW"/>
