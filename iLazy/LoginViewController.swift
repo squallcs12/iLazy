@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidAppear(animated: Bool) {
         let (data, error) = Locksmith.loadDataForUserAccount("myUserAccount")
+        return
         if let accessToken = data?.objectForKey("access_token") as! String! {
             Client.accessToken = data?.objectForKey("access_token") as! String!
             Client.refreshToken = data?.objectForKey("refresh_token") as! String!
@@ -53,13 +54,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     })
                 } else {
+                    var errorMessage = ""
                     let errors = data.objectForKey("errors") as! NSArray
-                    var errorString = ""
-                    for _error in errors {
-                        let error = _error as! NSDictionary
-                        errorString += error.objectForKey("message") as! String + "\n"
+                    let fieldErrors = errors[0] as! NSDictionary
+
+                    for (field, errorList) in fieldErrors {
+                        errorMessage += (field as! String) + "\n"
+                        for error in (errorList as! NSArray) {
+                            errorMessage += (error as! String) + "\n"
+                        }
                     }
-                    Alert.error(self, message: errorString, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        Alert.hideLoading(){
+                            Alert.error(self, message: errorMessage){
+                            }
+                        }
+                    })
                 }
             }
         }
