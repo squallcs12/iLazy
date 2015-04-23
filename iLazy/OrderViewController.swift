@@ -90,19 +90,9 @@ class OrderViewController: UIViewController{
                     }
                 })
             } else {
-                var errorMessage = ""
-                let errors = data.objectForKey("errors") as! NSArray
-                let fieldErrors = errors[0] as! NSDictionary
-
-                for (field, errorList) in fieldErrors {
-                    errorMessage += (field as! String) + "\n"
-                    for error in (errorList as! NSArray) {
-                        errorMessage += (error as! String) + "\n"
-                    }
-                }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     Alert.hideLoading(){
-                        Alert.error(self, message: errorMessage){
+                        Alert.error(self, errors: data.objectForKey("errors") as! NSArray){
                         }
                     }
                 })

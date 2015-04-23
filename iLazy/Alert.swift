@@ -56,6 +56,19 @@ class Alert{
         controller.presentViewController(AlertVar.alert, animated: true, completion: completion)
     }
 
+    class func error(controller: UIViewController, errors: NSArray, completion: (() -> Void)?){
+        var errorMessage = ""
+        let fieldErrors = errors[0] as! NSDictionary
+
+        for (field, errorList) in fieldErrors {
+            errorMessage += (field as! String) + "\n"
+            for error in (errorList as! NSArray) {
+                errorMessage += (error as! String) + "\n"
+            }
+        }
+        Alert.error(controller, message: errorMessage, completion: completion)
+    }
+
     class func success(controller: UIViewController, message: String = "", completion: (() -> Void)?){
         Alert.initAlert()
         AlertVar.alert.message = message
