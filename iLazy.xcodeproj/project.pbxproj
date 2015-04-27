@@ -229,6 +229,12 @@
 				TargetAttributes = {
 					97AE75A01AD8D2BA006BFE07 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = RBK378AHF3;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					97AE75B71AD8D2BA006BFE07 = {
 						CreatedOnToolsVersion = 6.3;
@@ -430,9 +436,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iLazy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "645480c4-eedb-4785-9871-bb74a4ed4d5d";
 			};
 			name = Debug;
 		};
@@ -440,9 +449,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iLazy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "645480c4-eedb-4785-9871-bb74a4ed4d5d";
 			};
 			name = Release;
 		};

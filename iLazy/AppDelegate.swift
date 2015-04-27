@@ -56,6 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println(error.userInfo)
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        println(deviceToken)
+    }
+
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
