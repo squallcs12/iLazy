@@ -9,7 +9,10 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    static var instance: TabBarController! = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        TabBarController.instance = self
     }
 }

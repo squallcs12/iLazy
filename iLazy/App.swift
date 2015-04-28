@@ -18,8 +18,6 @@ class App: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var price: NSNumber
     @NSManaged var expires: NSDate
-    @NSManaged var relationship: Param
-    @NSManaged var relationship1: Instance
 
     class func fromUserAppDict(userApp: NSDictionary, context: NSManagedObjectContext) -> App{
         let appInfo = AppInfo.fromDict(userApp.objectForKey("app") as! NSDictionary)

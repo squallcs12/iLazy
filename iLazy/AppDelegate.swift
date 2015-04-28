@@ -28,6 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        splitViewController.delegate = self
         Static.delegate = self
 
+        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+
         AppInfo.dateFormater.dateFormat = "LLL dd"
 
         return true
@@ -62,6 +67,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         println(deviceToken)
+    }
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        var a = 1
+        let url = userInfo["url"] as! String
+        let title = userInfo["title"] as! String
+        let message = userInfo["message"] as! String
+        let detail = (userInfo["aps"] as! NSDictionary).objectForKey("alert") as! String
+
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Notification", inManagedObjectContext: self.managedObjectContext!) as! Notification
+        newItem.title = title
+        newItem.url = url
+        newItem.message = message
+        newItem.detail = detail
+        self.managedObjectContext?.save(nil)
     }
 
     // MARK: - Core Data stack

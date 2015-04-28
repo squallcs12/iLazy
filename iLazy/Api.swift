@@ -10,7 +10,7 @@ import Foundation
 
 public struct Client{
     static var session = NSURLSession.sharedSession()
-    static var host = "localhost:8000"
+    static var host = "192.168.1.66:8000"
     static var schema = "http"
     static var isLogin = false
     static var clientId = "zgYQBHM7AoqtNwRhEuQw6OlbPwtR3geV9EjnLWDf"

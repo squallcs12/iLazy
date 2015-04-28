@@ -666,7 +666,7 @@
         <!--Settings-->
         <scene sceneID="AyY-aS-Kjy">
             <objects>
-                <tableViewController id="00B-r2-5fh" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="00B-r2-5fh" customClass="SettingsTableViewController" customModule="iLazy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="W3q-ia-h3a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
